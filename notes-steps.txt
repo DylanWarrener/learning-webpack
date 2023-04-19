@@ -1,5 +1,0 @@
-Do in order:
-    Check vue files complile down to js from ts.
-    Check vue files compile down css 
-    Check vue files compile down scss
-    Integrate settings into tpw-website

@@ -1,6 +1,7 @@
 # Local files
 dist
 node_modules
+notes-steps
 
 # local env files
 .env.local

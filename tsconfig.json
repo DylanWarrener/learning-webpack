@@ -1,79 +1,42 @@
 {
     "compilerOptions": {
-        /* Type checking */
-        "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
-        "noImplicitOverride": true,
-        "noImplicitReturns": true,
         "noImplicitThis": true,
-        "noPropertyAccessFromIndexSignature": true,
-        "noUncheckedIndexedAccess": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "strictBindCallApply": true,
-        "strictFunctionTypes": true,
-        "strictNullChecks": true,
-        "strictPropertyInitialization": true,
-        "useUnknownInCatchVariables": true,
-
-        /* Modules */
-        "baseUrl": "./",
-        "module": "ES2015",
-        "moduleResolution": "node",
-        "paths": {
-            "@/*": [
-                "src/*"
-            ]
-        },
-        "resolveJsonModule": true,
-        //"rootDir": "./src"
-
-        /* Emit */
-        "downlevelIteration": true,
-        //"noEmit": true,
         "noEmitOnError": true,
-        "outDir": "./dist",
         "removeComments": true,
         "sourceMap": true,
-
-        /* Javascript support */
-
-        /* Editor support */
-
-        /* Interop constraints */
-        "allowSyntheticDefaultImports": true,
+        "target": "ES5",
+        "module": "ES2015",
+        "moduleResolution": "node",
+        "strict": true,
+        "downlevelIteration": true,
+        "outDir": "./dist",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
-
-        /*Backwards compatibility */
-
-        /* Language & Environment */
-        "lib": [ 
-            "dom", 
-            "esnext", 
-            "dom.iterable", 
-            "scripthost" 
-        ],
-        "target": "ES5",
         "useDefineForClassFields": true,
-
-        /* Compiler diagnostics */
-
-        /* Projects */
-
-        /* Output formatting */
-
-        /* Completeness */ 
         "skipLibCheck": true,
-
-        /* Watch options */
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ]
+        },
+        "lib": [ 
+            "ES5",
+            "ES2015",
+            "ESNext",
+            "DOM", 
+            "ScriptHost",
+            "DOM.Iterable"
+        ]
     },
+    "files": ["./vue-shim.d.ts"],
     "include": [
         "src/**/*.ts",
         "src/**/*.tsx",
         "src/**/*.vue"
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "./**/*.d.ts"
     ]
 }

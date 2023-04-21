@@ -3,21 +3,44 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
+	// The entry file to start compilation
 	entry: "./src/index.ts",
 	output: {
+		// Names the output file to bundle.js
 		filename: "bundle.js",
+		// Directs all compilation files to the dist folder
 		path: path.resolve(__dirname, "dist"),
+		// Not sure yet
 		publicPath: "dist",
+		// Cleans the dist folder on compilation
 		clean: true,
 	},
 	devServer: {
-		static: "dist",
+		// Tells dev server where to serve files from
+		static: {
+			directory: path.join(__dirname, "dist"),
+		},
+		// Only show webpack errors, instead of a long console log message.
 		stats: "errors-only",
+		// Open a new browser when webpack dev server loads
+		open: true,
+		// GZIPS the files before serving them
+		compress: true,
+		// Shows a fullscreen overlay in the browser when there are compiler errors but not warnings
+		client: {
+			overlay: {
+				errors: true,
+				warnings: false,
+			},
+		},
+		/*
 		devMiddleware: {
 			publicPath: "/",
 			writeToDisk: true,
 		},
+        */
 	},
+	// Applies rules to each file type extension
 	module: {
 		rules: [
 			// Applies to vue files
@@ -50,7 +73,7 @@ module.exports = {
 		],
 	},
 	resolve: {
-		extensions: [".js", ".ts", ".tsx", ".vue"],
+		extensions: [".js", ".ts", ".vue"],
 	},
 	plugins: [
 		// If multiple templates are needed, add HtmlWebpackPlugin multiple times

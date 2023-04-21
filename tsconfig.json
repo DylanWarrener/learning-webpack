@@ -12,9 +12,13 @@
         "downlevelIteration": true,
         "outDir": "./dist",
         "esModuleInterop": true,
+        "allowSyntheticDefaultImports" : true,
         "forceConsistentCasingInFileNames": true,
         "useDefineForClassFields": true,
         "skipLibCheck": true,
+        "importHelpers": true,
+        "baseUrl": ".",
+        "typeRoots": ["src/types", "node_modules/@types"],
         "paths": {
             "@/*": [
                 "./src/*"
@@ -29,14 +33,14 @@
             "DOM.Iterable"
         ]
     },
-    "files": ["./vue-shim.d.ts"],
     "include": [
         "src/**/*.ts",
-        "src/**/*.tsx",
         "src/**/*.vue"
     ],
     "exclude": [
         "node_modules",
+        "dist",
+        ".vscode",
         "./**/*.d.ts"
     ]
 }

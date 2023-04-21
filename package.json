@@ -5,14 +5,16 @@
     "private": true,
     "scripts": {
         "serve": "npm run dev && npm run start",
-        "start": "webpack serve",
+        "start": "webpack-dev-server",
         "build": "webpack -c webpack.config.js",
         "dev": "webpack -c webpack.config.dev.js",
-        "prod": "webpack -c webpack.config.prod.js"
+        "prod": "webpack -c webpack.config.prod.js",
+        "test": "webpack -c webpack.config.single.js"
     },
     "author": "Dylan Warrener",
     "license": "ISC",
     "devDependencies": {
+        "@vue/compiler-sfc": "^3.2.47",
         "babel-loader": "^9.1.2",
         "css-loader": "^6.7.3",
         "html-webpack-plugin": "^5.5.1",

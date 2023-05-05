@@ -39,8 +39,6 @@
     ],
     "exclude": [
         "node_modules",
-        "dist",
-        ".vscode",
-        "./**/*.d.ts"
+        "dist"
     ]
 }

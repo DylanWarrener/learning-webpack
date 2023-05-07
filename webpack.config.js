@@ -12,7 +12,7 @@ module.exports = {
 		publicPath: "/dist/",
 		clean: true,
 	},
-	devtool: {},
+	devtool: "inline-source-map",
 	devServer: {
 		static: {
 			directory: path.resolve(__dirname, "dist"),

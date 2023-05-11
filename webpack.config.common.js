@@ -1,45 +1,53 @@
+// Node modules
 const path = require("path");
+
+// Plugins modules
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
-	context: __dirname,
 	entry: {
-		bundle: path.resolve(__dirname, "./src/index.ts"),
+		app: path.resolve(__dirname, "src/index.ts"),
 	},
 	output: {
-		filename: "bundle.js",
 		path: path.resolve(__dirname, "dist"),
-		publicPath: "dist",
+		publicPath: "/dist/",
 		clean: true,
 	},
 	devServer: {
 		static: {
-			directory: path.join(__dirname, "dist"),
+			directory: path.resolve(__dirname, "dist"),
 		},
-		stats: "errors-only",
 		open: true,
 		compress: true,
 		client: {
-			overlay: {
-				errors: true,
-				warnings: false,
-			},
+			overlay: true,
 		},
-		/*
-		devMiddleware: {
-			publicPath: "/",
-			writeToDisk: true,
-		},
-        */
 	},
+	//devtool: "inline-source-map",
 	// Applies rules to each file type extension
 	module: {
 		rules: [
+			// Applies to both plain `.css` or `.scss` files
+			// AND <script lang="css"> or <script lang="scss"> blocks in `.vue` files
+			{
+				test: /\.css$/,
+				use: ["vue-style-loader", "css-loader"],
+			},
 			// Applies to vue files
 			{
 				test: /\.vue$/,
 				loader: "vue-loader",
+				exclude: /node_modules/,
+			},
+			// Applies to both plain `.ts` files
+			// AND `<script lang="ts">` blocks in `.vue` files
+			{
+				test: /\.ts$/,
+				loader: "ts-loader",
+				options: {
+					appendTsSuffixTo: [/\.vue$/],
+				},
 				exclude: /node_modules/,
 			},
 			// Applies to both plain `.js` files
@@ -48,30 +56,17 @@ module.exports = {
 				test: /\.js$/,
 				loader: "babel-loader",
 				options: {
-					appendTsSuffixTo: [/\.vue$/],
+					presets: ["@babel/preset-env"],
 				},
 				exclude: /node_modules/,
-			},
-			// Applies to both plain `.ts` files
-			// AND `<script lang="ts">` blocks in `.vue` files
-			{
-				test: /\.ts$/,
-				loader: "ts-loader",
-				exclude: /node_modules/,
-			},
-			// Applies to both plain `.css` or `.scss` files
-			// AND <script lang="css"> or <script lang="scss"> blocks in `.vue` files
-			{
-				test: /\.css$/,
-				use: ["vue-style-loader", "style-loader", "css-loader"],
 			},
 		],
 	},
 	resolve: {
-		modules: ["node_modules"],
 		extensions: [".js", ".ts", ".vue"],
 	},
 	plugins: [
+		new VueLoaderPlugin(),
 		// If multiple templates are needed, add HtmlWebpackPlugin multiple times
 		new HtmlWebpackPlugin({
 			showErrors: true,
@@ -79,8 +74,7 @@ module.exports = {
 			filename: "index.html",
 			scriptLoading: "defer",
 			title: "TPW Home Development",
-			template: path.join(__dirname, "src/index.html"),
+			template: path.resolve(__dirname, "src/index.html"),
 		}),
-		new VueLoaderPlugin(),
 	],
 };

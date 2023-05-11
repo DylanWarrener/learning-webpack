@@ -4,13 +4,10 @@
   "description": "",
   "private": true,
   "scripts": {
-    "serve": "npm run test && npm run start",
+    "serve": "npm run dev && npm run start",
     "start": "webpack serve",
-    "build": "webpack --config webpack.config.js",
-    "dev": "webpack --config webpack.config.dev.js",
-    "prod": "webpack --config webpack.config.prod.js",
-    "test": "webpack --config webpack.config.js",
-    "node": "node app.js"
+    "dev": "webpack --mode development",
+    "prod": "webpack --mode production"
   },
   "author": "Dylan Warrener",
   "license": "ISC",

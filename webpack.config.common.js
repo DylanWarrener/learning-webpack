@@ -74,10 +74,12 @@ module.exports = {
 	plugins: [
 		// If multiple templates are needed, add HtmlWebpackPlugin multiple times
 		new HtmlWebpackPlugin({
-			template: "src/index.html",
-			title: "TPW Home Development",
+			showErrors: true,
+			cache: true,
 			filename: "index.html",
 			scriptLoading: "defer",
+			title: "TPW Home Development",
+			template: path.join(__dirname, "src/index.html"),
 		}),
 		new VueLoaderPlugin(),
 	],

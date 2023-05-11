@@ -5,7 +5,7 @@
         "noEmitOnError": true,
         "removeComments": true,
         "sourceMap": true,
-        "target": "ES5",
+        "target": "ES6",
         "module": "ES2015",
         "moduleResolution": "node",
         "strict": true,

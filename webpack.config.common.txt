@@ -6,14 +6,17 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
+	mode: "production",
 	entry: {
 		app: path.resolve(__dirname, "src/index.ts"),
 	},
 	output: {
+		filename: "[name].bundle.js",
 		path: path.resolve(__dirname, "dist"),
 		publicPath: "/dist/",
 		clean: true,
 	},
+	target: "web",
 	devServer: {
 		static: {
 			directory: path.resolve(__dirname, "dist"),
@@ -23,8 +26,13 @@ module.exports = {
 		client: {
 			overlay: true,
 		},
+		historyApiFallback: true,
 	},
-	//devtool: "inline-source-map",
+	performance: {
+		maxAssetSize: 400000,
+		maxEntrypointSize: 400000,
+		hints: "error",
+	},
 	// Applies rules to each file type extension
 	module: {
 		rules: [

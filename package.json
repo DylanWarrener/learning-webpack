@@ -4,10 +4,9 @@
   "description": "",
   "private": true,
   "scripts": {
-    "serve": "npm run dev && npm run start",
-    "start": "webpack serve",
-    "dev": "webpack --mode development",
-    "prod": "webpack --mode production"
+    "start": "npm run build && npm run serve",
+    "build": "webpack",
+    "serve": "webpack serve"
   },
   "author": "Dylan Warrener",
   "license": "ISC",

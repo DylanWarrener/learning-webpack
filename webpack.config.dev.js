@@ -1,20 +1,10 @@
-// Node modules
-const path = require("path");
+// Common config
+const common = require("./webpack.config.common.js");
 
-module.exports = {
+// Third party modules
+const { merge } = require("webpack-merge");
+
+module.exports = merge(common, {
 	mode: "development",
-	output: {
-		filename: "[name].bundle.js",
-	},
 	devtool: "inline-source-map",
-	devServer: {
-		static: {
-			directory: path.resolve(__dirname, "dist"),
-		},
-		open: true,
-		compress: true,
-		client: {
-			overlay: true,
-		},
-	},
-};
+});

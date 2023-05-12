@@ -57,8 +57,15 @@ module.exports = {
 			// Applies to both plain `.css` or `.scss` files
 			// AND <script lang="css"> or <script lang="scss"> blocks in `.vue` files
 			{
-				test: /\.css$/,
-				use: ["vue-style-loader", "css-loader"],
+				test: /\.s[ac]ss$/i,
+				use: [
+					// Creates `style` nodes from JS strings
+					"vue-style-loader",
+					// Translates CSS into CommonJS
+					"css-loader",
+					// Compiles Sass to CSS
+					"sass-loader",
+				],
 			},
 		],
 	},

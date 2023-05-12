@@ -1,5 +1,5 @@
 <template>
-	<div>Why are you...</div>
+	<div class="test">Why are you...</div>
 </template>
 
 <script lang="ts">
@@ -9,3 +9,9 @@ export default defineComponent({
 	name: "app",
 });
 </script>
+
+<style lang="scss">
+.test {
+	color: $color;
+}
+</style>

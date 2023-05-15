@@ -1,10 +1,15 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 
-import App from "./App.vue";
+// Routes
+import Router from "@/router";
 
-const app = createApp(App);
-const pinia = createPinia();
+// Main app
+import Main from "@/main.vue";
 
-app.use(pinia);
-app.mount("#app");
+const App = createApp(Main);  // Create the app
+const Pinia = createPinia();  // Create the store
+
+App.use(Router);    // Use pinia store
+App.use(Pinia);     // Use vue router
+App.mount("#app");  // Mount the app

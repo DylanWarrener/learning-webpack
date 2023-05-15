@@ -1,6 +1,3 @@
-Make scss imports work in vue style tags. 
-Make global scss variables available in vue style tags
-Allow importing global scss files in script section
 Configure vue.config.js
 Configure eslinttc.js
 Configure tsconfig.js

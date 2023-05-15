@@ -1,44 +1,29 @@
 {
-    "compilerOptions": {
-        "noImplicitAny": true,
-        "noImplicitThis": true,
-        "noEmitOnError": true,
-        "removeComments": true,
-        "sourceMap": true,
-        "target": "ES6",
-        "module": "ES2015",
-        "moduleResolution": "node",
-        "strict": true,
-        "downlevelIteration": true,
-        "outDir": "./dist",
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports" : true,
-        "forceConsistentCasingInFileNames": true,
-        "useDefineForClassFields": true,
-        "skipLibCheck": true,
-        "importHelpers": true,
-        "baseUrl": ".",
-        "typeRoots": ["src/types", "node_modules/@types"],
-        "paths": {
-            "@/*": [
-                "./src/*"
-            ]
-        },
-        "lib": [ 
-            "ES5",
-            "ES2015",
-            "ESNext",
-            "DOM", 
-            "ScriptHost",
-            "DOM.Iterable"
-        ]
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "noEmitOnError": true,
+    "removeComments": false,         // Ensures magic webpack comments work (e.g. webpackChunkName) works
+    "sourceMap": true,
+    "target": "ES6",                 // Setting the Typescript compiler to the latest code
+    "module": "ESNext",              // To allow asyncronous modules
+    "moduleResolution": "node",
+    "strict": true,
+    "downlevelIteration": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
+    "skipLibCheck": true,
+    "importHelpers": true,
+    "baseUrl": ".",
+    "typeRoots": ["src/types", "node_modules/@types"],
+    "paths": {
+      "@/*": ["./src/*"]
     },
-    "include": [
-        "src/**/*.ts",
-        "src/**/*.vue"
-    ],
-    "exclude": [
-        "node_modules",
-        "dist"
-    ]
+    "lib": ["ES5", "ES2015", "ESNext", "DOM", "ScriptHost", "DOM.Iterable"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue"],
+  "exclude": ["node_modules", "dist"]
 }

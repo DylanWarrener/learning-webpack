@@ -1,0 +1,13 @@
+Install chocolatey package manager
+Install sass dart-sass
+Install powershell 7.2+
+Install vscode powershell extension
+Change default terminal version:
+    - ctrl + shift + p > Powershell: Show session version
+    - Add absolute path to powershell exe (should be in C:/ProgramFiles/Powershell/7/pwsh.exe)
+End process by id
+    - Find process by port number
+        netstat -aon | findstr port_number_here
+    - End process by PID
+        taskkill /F /PID pid_here
+When updating css-loader to 4.0+, vue-style-loader no longer loads scoped style tags in vue files. 

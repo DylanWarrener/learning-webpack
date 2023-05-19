@@ -11,6 +11,7 @@
   "sideEffects": [
     "*.vue"
   ],
+  "type": "module",
   "author": "Dylan Warrener",
   "license": "ISC",
   "devDependencies": {

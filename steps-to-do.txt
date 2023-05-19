@@ -1,6 +1,6 @@
+Configure tsconfig.js
 Configure vue.config.js
 Configure eslinttc.js
-Configure tsconfig.js
-Configure browserlistrc
 Configure babel.config.js
+Configure browserlistrc
 Use alias @/ for src

@@ -1,29 +1,151 @@
 {
   "compilerOptions": {
-    "noImplicitAny": false,
-    "noImplicitThis": true,
-    "noEmitOnError": true,
-    "removeComments": false,         // Ensures magic webpack comments work (e.g. webpackChunkName) works
-    "sourceMap": true,
-    "target": "ES6",                 // Setting the Typescript compiler to the latest code
-    "module": "ESNext",              // To allow asyncronous modules
-    "moduleResolution": "node",
-    "strict": true,
-    "downlevelIteration": true,
-    "outDir": "./dist",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "useDefineForClassFields": true,
-    "skipLibCheck": true,
-    "importHelpers": true,
-    "baseUrl": ".",
-    "typeRoots": ["src/types", "node_modules/@types"],
-    "paths": {
-      "@/*": ["./src/*"]
+    /* Type checking */
+
+    "allowUnreachableCode": false, // does not allow unreachable code (e.g. returns not used)
+    "alwaysStrict": true, // applies strict rules
+    "exactOptionalPropertyTypes": true, // optional parameters set to undefined show errors
+    "noFallthroughCasesInSwitch": true, // ensures switch statements have either a break or return
+    "noImplicitAny": false,  // allows the any keyword (stops ts complaining about scoped styles)
+    "noImplicitOverride": true, // ensures classes that override methods in base class, are specified with the override keyword
+    "noImplicitReturns": true, // ensures all code paths return
+    "noImplicitThis": true, // raises errros on `this` expressions with an implied any type
+    "noPropertyAccessFromIndexSignature": true, // raises error if props access interface using dot notation, when indexed syntax should be used
+    "noUncheckedIndexedAccess": true, // interfaces with unknown props are covered by index signatures, which include an undefined type on top of its type value
+    "noUnusedLocals": true, // raises errors if a variable is declarted but not used
+    "noUnusedParameters": true, // raises errors if a parameter is declarted but not used
+    "strictBindCallApply": true, // ensures ts checks the built-in methods: call, bind, and apply; are invoked with correct argument for the underlying function
+    "strictFunctionTypes": true, // ensures strict function types
+    "strictNullChecks": true, // ensures there are no potential null values
+    "strictPropertyInitialization": true, // ensures there are no decleared variables in classes that are not in the constructor
+    "useUnknownInCatchVariables": true, // ensures errors have types defined before using them
+
+    /* Modules */
+
+    "allowArbitraryExtensions": false, // compiler will look for declearation files if js & ts do not understand the extension
+    "allowImportingTsExtensions": true, // allow ts files to import each other
+    "allowUmdGlobalAccess": false, // allows access to UMD exports as globals
+    "baseUrl": "./",
+    //"customConditions": [],
+    "module": "ESNext", // allows asyncronous modules
+    "moduleResolution": "nodenext", // allows asyncronous modules
+    //"moduleSuffixes": [ "ios" ] // override the default list of file name suffixes to search when resolving a module e.g. (./file.ios.ts & ./file.ts)
+    //"noResolve": "", // examines the initial set of files for import and <reference directives and add these resolved files to your program
+    "paths": { // A series of entries which re-map imports to lookup locations relative to the baseUrl if set
+        "@/*": ["src/*"]
     },
-    "lib": ["ES5", "ES2015", "ESNext", "DOM", "ScriptHost", "DOM.Iterable"]
+    "resolveJsonModule": true, // allows importing modules with a ‘.json’ extension
+    "resolvePackageJsonExports": false, // forces ts to consult the exports field of package.json files if it ever reads from a package in node_modules
+    "resolvePackageJsonImports": false, // forces ts to consult the imports field of package.json files if it ever reads from a package in node_modules
+    "rootDir": ".", // the longest common path of all non-declaration input files. If `composite` is set, the default is instead the directory containing the tsconfig.json file
+    //"rootDirs": [], // informs ts that there are many “virtual” directories acting as a single root
+    //"typeRoots": [], // if typeRoots is specified, only packages under typeRoots will be included as @types
+    //"types": [], // if types is specified, only packages listed will be included in the global scope. For instance:
+
+    /* Emit */
+
+    "declaration": false, // generate .d.ts files for every TypeScript or JavaScript file inside your project
+    //"declarationDir": "", // offers a way to configure the root directory for where declaration files are emitted
+    "declarationMap": false, // generates a source map for .d.ts files which map back to the original .ts source file
+    "downlevelIteration": true, // downleveling is TypeScript’s term for transpiling to an older version of JavaScript
+    "emitBOM": false, // controls whether TypeScript will emit a byte order mark (BOM) when writing output files
+    "emitDeclarationOnly": false, // only emit .d.ts files; do not emit .js files
+    "importHelpers": true, // if the importHelpers flag is on, these helper functions are instead imported from the tslib module
+    "importsNotUsedAsValues": "remove", // drops import statements which are only type references
+    //"inlineSourceMap": true, // instead of writing out a .js.map file to provide source maps, TypeScript will embed the source map content in the .js files
+    //"inlineSources": false, // ts will include the original content of the .ts file as an embedded string in the source map (using the source map’s sourcesContent property)
+    //"mapRoot": "", // specify the location where debugger should locate map files instead of generated locations
+    //"newLine": "", // specify the end of line sequence to be used when emitting files: ‘CRLF’ (dos) or ‘LF’ (unix)
+    "noEmit": false, // do not emit compiler output files like JavaScript source code, source-maps or declarations
+    // "noEmitHelpers": false, // instead of importing helpers with importHelpers, you can provide implementations in the global scope for the helpers you use and completely turn off emitting of helper functions
+    "noEmitOnError": true, // do not emit compiler output files like JavaScript source code, source-maps or declarations, if any errors were reported
+    "outDir": "dist", // places the coompiled ts files in dist
+    //"outFile": "", // if specified, all global (non-module) files will be concatenated into the single output file specified
+    //"preserveConstEnums": true, // do not erase const enum declarations in generated code
+    //"preserveValueImports": false, // depreciated
+    "removeComments": false, // remoces comments. Need to allow webpack magic comments
+    //"sourceMap": false, // enables the generation of sourcemap files
+    //"sourceRoot": "", // 
+    //"stripInternal": true, // do not emit declarations for code that has an @internal annotation in its JSDoc comment
+
+    /* JavaScript support */
+
+    "allowJs": true, // allow JavaScript files to be imported inside your project, instead of just .ts and .tsx files
+    "checkJs": true, // works in tandem with allowJs. When checkJs is enabled then errors are reported in JavaScript files
+    //"maxNodeModuleJsDepth": 0, // the maximum dependency depth to search under node_modules and load JavaScript files
+
+    /* Editor support */
+
+    //"disableSizeLimit": false, // to avoid a possible memory bloat issues when working with very large JavaScript projects, there is an upper limit to the amount of memory TypeScript will allocate
+    //"plugins": [], // language service plugins are a way to provide additional information to a user based on existing TypeScript files
+
+    /* Interop constraints */
+
+    "allowSyntheticDefaultImports": true, // allows the following: import React from "react"; -> instead of import * as React from "react";
+    "esModuleInterop": true, // ensures commonJS & ES6 module imports are treated differently 
+    "forceConsistentCasingInFileNames": true, // ts follows the case sensitivity rules of the file system it’s running on
+    "isolatedModules": true, // if set, all implementation files must be modules (meaning it has some form of import/export). An error occurs if any file isn’t a module
+    //"preserveSymlinks": false, // this is to reflect the same flag in Node.js; which does not resolve the real path of symlinks
+    "verbatimModuleSyntax": true, // drops any imports/exports types when the keyword type is used. Otherwise, leave it
+
+    /* Backwards compatability */
+
+    //"charset": true, // depreciated
+    "keyofStringsOnly": false, // this flag changes the keyof type operator to return string instead of string | number when applied to a type with a string index signature. This flag is used to help people keep this behavior from before TypeScript 2.9’s release
+    "noImplicitUseStrict": false, // by default, when emitting a module file to a non-ES6 target, ts emits a "use strict"; prologue at the top of the file. This setting disables the prologue.
+    "noStrictGenericChecks": true, // ts will unify type parameters when comparing two generic functions
+    //"out": false, // depreciated
+    //"suppressExcessPropertyErrors": false, // we don’t recommend using this flag in a modern codebase
+    //"suppressImplicitAnyIndexErrors": false, // quite a drastic approach. It is recommended to use a @ts-ignore comment instead
+
+    /* Language & Environment */
+
+    "emitDecoratorMetadata": false, // enables experimental support for emitting type metadata for decorators which works with the module reflect-metadata
+    "experimentalDecorators": false, // enables experimental support for decorators, which is a version of decorators that predates the TC39 standardization process
+    //"jsx": "preserve" // controls how JSX constructs are emitted in JavaScript files. This only affects output of JS files that started in .tsx files.
+    //"jsxFactory": // changes the function called in .js files when compiling JSX Elements using the classic JSX runtime
+    //"jsxFragmentFactory": "", // specify the JSX fragment factory function to use when targeting react JSX emit with jsxFactory compiler option is specified, e.g. Fragment
+    //"jsxImportSource": "", // declares the module specifier to be used for importing the jsx and jsxs factory functions when using jsx as "react-jsx" or "react-jsxdev" which were introduced in TypeScript 4.1
+    "lib": ["ES5", "ES2015", "ESNext", "DOM", "ScriptHost", "DOM.Iterable"], // libs to include
+    "moduleDetection": "auto",
+    "noLib": false, // disables the use of lib
+    //"reactNamespace": "", // use jsxFactory instead
+    "target": "ES5", // modern browsers support all ES6 features, so ES6 is a good choice
+    "useDefineForClassFields": true, // this flag is used as part of migrating to the upcoming standard version of class fields
+
+    /* Compiler diagnostics */
+    "diagnostics": false, // used to output diagnostic information for debugging. This command is a subset of extendedDiagnostics which are more user-facing results, and easier to interpret
+    "explainFiles": true, // print names of files which ts sees as a part of your project and the reason they are part of the compilation
+    "extendedDiagnostics": true, // you can use this flag to discover where TypeScript is spending its time when compiling
+    //"generateCpuProfile": false, // check why/if builds are slow
+    //"listEmittedFiles": true, // print names of generated files part of the compilation to the terminal
+    //"listFiles": true, // print names of files part of the compilation. This is useful when you are not sure that TypeScript has included a file you expected
+    //"traceResolution": true, // when you are trying to debug why a module isn’t being included
+
+    /* Projects */
+    //"composite": false, // to quickly determine if a project has been built yet.
+    //"disableReferencedProjectLoad": false, // if your project is large, you can use the flag disableReferencedProjectLoad to disable the automatic loading of all projects
+    //"disableSolutionSearching": false, // when working with composite ts projects, this option provides a way to declare that you do not want a project to be included when using features like find all references or jump to definition in an editor
+    //"disableSourceOfProjectReferenceRedirect": false, // when working with composite ts projects, this option provides a way to go back to the pre-3.7 behavior where d.ts files were used to as the boundaries between modules. In 3.7 the source of truth is now your TypeScript files.
+    //"incremental": false, // tells ts to save information about the project graph from the last compilation to files stored on disk. This creates a series of .tsbuildinfo files in the same folder as your compilation output
+    // "tsBuildInfoFile": false, // this option offers a way to configure the place where ts keeps track of the files it stores on the disk to indicate a project’s build state — by default, they are in the same folder as your emitted JavaScript.
+
+    /* Output formatting */
+    "noErrorTruncation": false, // do not truncate error messages
+    //"preserveWatchOutput": false, // whether to keep outdated console output in watch mode instead of clearing the screen every time a change happened
+    "pretty": true, // stylize errors and messages using color and context, this is on by default — offers you a chance to have less terse, single colored messages from the compiler.
+
+    /* Completeness  */
+    //"skipDefaultLibCheck": false, // use skipLibCheck instead. Skip type checking of default library declaration files
+    //"skipLibCheck": false, // skip type checking of declaration files
+
+    /* Command line  */
+
+    /* Watch options  */
+    "assumeChangesOnlyAffectDirectDependencies": false // when this option is enabled, ts will avoid rechecking/rebuilding all truly possibly-affected files, and only recheck/rebuild files that have changed as well as files that directly import them
   },
+  "watchOptions": {},
+  "typeAcquisition": {},
   "include": ["src/**/*.ts", "src/**/*.vue"],
   "exclude": ["node_modules", "dist"]
 }

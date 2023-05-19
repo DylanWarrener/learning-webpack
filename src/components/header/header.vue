@@ -22,8 +22,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .header {
-    border: 2px solid green;
+	border: 2px solid green;
 }
 </style>

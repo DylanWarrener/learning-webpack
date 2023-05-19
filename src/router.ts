@@ -1,83 +1,90 @@
-import { defineAsyncComponent } from 'vue';
+import { defineAsyncComponent } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 // Static child component
-import Home from './pages/pages-home.vue';
+import Home from "./pages/pages-home.vue";
 
 // Asyncronous child components (only load when needed)
 const Kitchens = defineAsyncComponent({
-  // Component to load when called. But prefetch in browser's idle time
-  loader: () => import(
-    /* webpackPrefetch: true */ 
-    /* webpackChunkName: "kitchens" */ 
-    "./pages/pages-kitchens.vue"
-  ),
+	// Component to load when called. But prefetch in browser's idle time
+	loader: () =>
+		import(
+			/* webpackPrefetch: true */
+			/* webpackChunkName: "kitchens" */
+			"./pages/pages-kitchens.vue"
+		),
 
-  // A component to load while the async component is loading
-  // loadingComponent: Loader,
+	// A component to load while the async component is loading
+	// loadingComponent: Loader,
 
-  // A component to load if the load fails
-  // errorComponent: Error,
+	// A component to load if the load fails
+	// errorComponent: Error,
 
-  // Delay before showing the loader. Default: 200ms.
-  // delay: 300,
+	// Delay before showing the loader. Default: 200ms.
+	// delay: 300,
 
-  // The error component will be displayed if a timeout is provided & exceeded. Default: Infinity
-  // timeout: 4000,
+	// The error component will be displayed if a timeout is provided & exceeded. Default: Infinity
+	// timeout: 4000,
 
-  //
-  // suspensible: false,
+	//
+	// suspensible: false,
 
-  //
-  // onError(error, retry, fail, attempts) {
-  // 	if (error.message.match(/fetch/) && attempts <= 2) {
-  // 		retry()
-  // 	} else {
-  // 		fail()
-  // 	}
-  // }
+	//
+	// onError(error, retry, fail, attempts) {
+	// 	if (error.message.match(/fetch/) && attempts <= 2) {
+	// 		retry()
+	// 	} else {
+	// 		fail()
+	// 	}
+	// }
 });
 const Bathrooms = defineAsyncComponent({
-  loader: () => import(
-    /* webpackPrefetch: true */
-    /* webpackChunkName: "bathrooms" */
-     "./pages/pages-bathrooms.vue"
-  )
+	loader: () =>
+		import(
+			/* webpackPrefetch: true */
+			/* webpackChunkName: "bathrooms" */
+			"./pages/pages-bathrooms.vue"
+		),
 });
 const Newbuilds = defineAsyncComponent({
-  loader: () => import(
-    /* webpackPrefetch: true */
-    /* webpackChunkName: "newbuilds" */ 
-    "./pages/pages-newbuilds.vue"
-  )
+	loader: () =>
+		import(
+			/* webpackPrefetch: true */
+			/* webpackChunkName: "newbuilds" */
+			"./pages/pages-newbuilds.vue"
+		),
 });
 const Extensions = defineAsyncComponent({
-  loader: () => import(
-    /* webpackPrefetch: true */
-    /* webpackChunkName: "extensions" */ 
-    "./pages/pages-extensions.vue"
-  ),
+	loader: () =>
+		import(
+			/* webpackPrefetch: true */
+			/* webpackChunkName: "extensions" */
+			"./pages/pages-extensions.vue"
+		),
 });
 const Refurbishments = defineAsyncComponent({
-  loader: () => import(
-    /* webpackPrefetch: true */ 
-    /* webpackChunkName: "refurbishments" */ 
-    "./pages/pages-refurbishments.vue"
-  ),
+	loader: () =>
+		import(
+			/* webpackPrefetch: true */
+			/* webpackChunkName: "refurbishments" */
+			"./pages/pages-refurbishments.vue"
+		),
 });
 const Contact = defineAsyncComponent({
-  loader: () => import(
-    /* webpackPrefetch: true */
-    /* webpackChunkName: "contact" */ 
-    "./pages/pages-contact.vue"
-  ),
+	loader: () =>
+		import(
+			/* webpackPrefetch: true */
+			/* webpackChunkName: "contact" */
+			"./pages/pages-contact.vue"
+		),
 });
 const About = defineAsyncComponent({
-  loader: () => import(
-    /* webpackPrefetch: true */
-    /* webpackChunkName: "about" */ 
-    "./pages/pages-about.vue"
-  ),
+	loader: () =>
+		import(
+			/* webpackPrefetch: true */
+			/* webpackChunkName: "about" */
+			"./pages/pages-about.vue"
+		),
 });
 
 // Routes

@@ -10,4 +10,9 @@ End process by id
         netstat -aon | findstr port_number_here
     - End process by PID
         taskkill /F /PID pid_here
-When updating css-loader to 4.0+, vue-style-loader no longer loads scoped style tags in vue files. 
+When updating css-loader to 4.0+, vue-style-loader no longer loads scoped style tags in vue files. (disabled noImplicitAny in tsconfig)
+
+// Scoped
+With scoped, the parent component's styles will not leak into child components. However, a child component's root node will be affected 
+by both the parent's scoped CSS and the child's scoped CSS. This is by design so that the parent can style the child root element for layout purposes.
+Therefore, scoped parent spills into direct children, so children can use it. But, using scoped in child removes the parents css.

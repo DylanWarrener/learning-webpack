@@ -3,27 +3,27 @@
     /* Type checking */
 
     "allowUnreachableCode": false, // does not allow unreachable code (e.g. returns not used)
-    "alwaysStrict": true, // applies strict rules
+    "allowUnusedLabels": false, // removes unused variables
     "exactOptionalPropertyTypes": true, // optional parameters set to undefined show errors
     "noFallthroughCasesInSwitch": true, // ensures switch statements have either a break or return
-    "noImplicitAny": false,  // allows the any keyword (stops ts complaining about scoped styles)
     "noImplicitOverride": true, // ensures classes that override methods in base class, are specified with the override keyword
     "noImplicitReturns": true, // ensures all code paths return
-    "noImplicitThis": true, // raises errros on `this` expressions with an implied any type
     "noPropertyAccessFromIndexSignature": true, // raises error if props access interface using dot notation, when indexed syntax should be used
     "noUncheckedIndexedAccess": true, // interfaces with unknown props are covered by index signatures, which include an undefined type on top of its type value
     "noUnusedLocals": true, // raises errors if a variable is declarted but not used
     "noUnusedParameters": true, // raises errors if a parameter is declarted but not used
-    "strictBindCallApply": true, // ensures ts checks the built-in methods: call, bind, and apply; are invoked with correct argument for the underlying function
-    "strictFunctionTypes": true, // ensures strict function types
-    "strictNullChecks": true, // ensures there are no potential null values
-    "strictPropertyInitialization": true, // ensures there are no decleared variables in classes that are not in the constructor
-    "useUnknownInCatchVariables": true, // ensures errors have types defined before using them
+    "strict": true, // enables the 8 options below
+    //"alwaysStrict": true, // applies strict rules
+    //"strictNullChecks": true, // ensures there are no potential null values
+    //"strictBindCallApply": true, // ensures ts checks the built-in methods: call, bind, and apply; are invoked with correct argument for the underlying function
+    //"strictFunctionTypes": true, // ensures strict function types
+    //"strictPropertyInitialization": true, // ensures there are no decleared variables in classes that are not in the constructor
+    //"noImplicitAny": false, // allows the any keyword (stops ts complaining about scoped styles)
+    //"noImplicitThis": true, // raises errros on `this` expressions with an implied any type
+    //"useUnknownInCatchVariables": true, // ensures errors have types defined before using them
 
     /* Modules */
 
-    "allowArbitraryExtensions": false, // compiler will look for declearation files if js & ts do not understand the extension
-    "allowImportingTsExtensions": true, // allow ts files to import each other
     "allowUmdGlobalAccess": false, // allows access to UMD exports as globals
     "baseUrl": "./",
     //"customConditions": [],
@@ -31,12 +31,11 @@
     "moduleResolution": "nodenext", // allows asyncronous modules
     //"moduleSuffixes": [ "ios" ] // override the default list of file name suffixes to search when resolving a module e.g. (./file.ios.ts & ./file.ts)
     //"noResolve": "", // examines the initial set of files for import and <reference directives and add these resolved files to your program
-    "paths": { // A series of entries which re-map imports to lookup locations relative to the baseUrl if set
-        "@/*": ["src/*"]
+    "paths": {
+      // A series of entries which re-map imports to lookup locations relative to the baseUrl if set
+      "@/*": ["src/*"]
     },
     "resolveJsonModule": true, // allows importing modules with a ‘.json’ extension
-    "resolvePackageJsonExports": false, // forces ts to consult the exports field of package.json files if it ever reads from a package in node_modules
-    "resolvePackageJsonImports": false, // forces ts to consult the imports field of package.json files if it ever reads from a package in node_modules
     "rootDir": ".", // the longest common path of all non-declaration input files. If `composite` is set, the default is instead the directory containing the tsconfig.json file
     //"rootDirs": [], // informs ts that there are many “virtual” directories acting as a single root
     //"typeRoots": [], // if typeRoots is specified, only packages under typeRoots will be included as @types
@@ -65,7 +64,7 @@
     //"preserveValueImports": false, // depreciated
     "removeComments": false, // remoces comments. Need to allow webpack magic comments
     //"sourceMap": false, // enables the generation of sourcemap files
-    //"sourceRoot": "", // 
+    //"sourceRoot": "", //
     //"stripInternal": true, // do not emit declarations for code that has an @internal annotation in its JSDoc comment
 
     /* JavaScript support */
@@ -82,11 +81,10 @@
     /* Interop constraints */
 
     "allowSyntheticDefaultImports": true, // allows the following: import React from "react"; -> instead of import * as React from "react";
-    "esModuleInterop": true, // ensures commonJS & ES6 module imports are treated differently 
+    "esModuleInterop": true, // ensures commonJS & ES6 module imports are treated differently
     "forceConsistentCasingInFileNames": true, // ts follows the case sensitivity rules of the file system it’s running on
     "isolatedModules": true, // if set, all implementation files must be modules (meaning it has some form of import/export). An error occurs if any file isn’t a module
     //"preserveSymlinks": false, // this is to reflect the same flag in Node.js; which does not resolve the real path of symlinks
-    "verbatimModuleSyntax": true, // drops any imports/exports types when the keyword type is used. Otherwise, leave it
 
     /* Backwards compatability */
 
@@ -123,6 +121,7 @@
     //"traceResolution": true, // when you are trying to debug why a module isn’t being included
 
     /* Projects */
+
     //"composite": false, // to quickly determine if a project has been built yet.
     //"disableReferencedProjectLoad": false, // if your project is large, you can use the flag disableReferencedProjectLoad to disable the automatic loading of all projects
     //"disableSolutionSearching": false, // when working with composite ts projects, this option provides a way to declare that you do not want a project to be included when using features like find all references or jump to definition in an editor
@@ -131,6 +130,7 @@
     // "tsBuildInfoFile": false, // this option offers a way to configure the place where ts keeps track of the files it stores on the disk to indicate a project’s build state — by default, they are in the same folder as your emitted JavaScript.
 
     /* Output formatting */
+
     "noErrorTruncation": false, // do not truncate error messages
     //"preserveWatchOutput": false, // whether to keep outdated console output in watch mode instead of clearing the screen every time a change happened
     "pretty": true, // stylize errors and messages using color and context, this is on by default — offers you a chance to have less terse, single colored messages from the compiler.
@@ -144,8 +144,18 @@
     /* Watch options  */
     "assumeChangesOnlyAffectDirectDependencies": false // when this option is enabled, ts will avoid rechecking/rebuilding all truly possibly-affected files, and only recheck/rebuild files that have changed as well as files that directly import them
   },
-  "watchOptions": {},
-  "typeAcquisition": {},
+  "watchOptions": {
+    "watchFile": "useFsEvents", // the strategy for how individual files are watched
+    "watchDirectory": "useFsEvents", // the strategy for how entire directory trees are watched under systems that lack recursive file-watching functionality
+    "fallbackPolling": "priorityinterval", // when using file system events, this option specifies the polling strategy that gets used when the system runs out of native file watchers and/or doesn’t support native file watchers
+    //"synchronousWatchDirectory": false // synchronously call callbacks and update the state of directory watchers on platforms that don`t support recursive watching natively
+  },
+  "typeAcquisition": {
+    //"enable": false, // disables automatic type acquisition in JavaScript projects
+    //"include": "", // if you have a JavaScript project where TypeScript needs additional guidance to understand global dependencies, or have disabled the built-in inference via disableFilenameBasedTypeAcquisition
+    //"exclude": false, // offers a config for disabling the type-acquisition for a certain module in JavaScript projects
+    //"disableAutomaticTypeAcquisition": false // ts type acquisition can infer what types should be added based on filenames in a project
+  },
   "include": ["src/**/*.ts", "src/**/*.vue"],
   "exclude": ["node_modules", "dist"]
 }
